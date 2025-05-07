@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErcJul.Tailwind", "ErcJul.Tailwind\ErcJul.Tailwind.csproj", "{0D632949-1414-44C7-9FE3-887C4C9D1B23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErcJul.Tailwind.Debug", "ErcJul.Tailwind.Debug\ErcJul.Tailwind.Debug\ErcJul.Tailwind.Debug.csproj", "{C43FF2CB-98CA-4606-AD04-5525E17A3510}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErcJul.Tailwind.Debug.Client", "ErcJul.Tailwind.Debug\ErcJul.Tailwind.Debug.Client\ErcJul.Tailwind.Debug.Client.csproj", "{FC4AC480-6160-40A7-8785-C3BF77DB5724}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D632949-1414-44C7-9FE3-887C4C9D1B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D632949-1414-44C7-9FE3-887C4C9D1B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D632949-1414-44C7-9FE3-887C4C9D1B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D632949-1414-44C7-9FE3-887C4C9D1B23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43FF2CB-98CA-4606-AD04-5525E17A3510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43FF2CB-98CA-4606-AD04-5525E17A3510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43FF2CB-98CA-4606-AD04-5525E17A3510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43FF2CB-98CA-4606-AD04-5525E17A3510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4AC480-6160-40A7-8785-C3BF77DB5724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4AC480-6160-40A7-8785-C3BF77DB5724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4AC480-6160-40A7-8785-C3BF77DB5724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4AC480-6160-40A7-8785-C3BF77DB5724}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
