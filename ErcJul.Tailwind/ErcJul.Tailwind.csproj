@@ -11,7 +11,9 @@
         <Copyright>Copyright 2025 The ErcJul.Tailwind Authors</Copyright>
         <Description>tailwindcss generate tool</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/grpc/grpc</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/ercJuL/Tailwind</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/ercJuL/Tailwind</RepositoryUrl>
+        <RepositoryBranch>main</RepositoryBranch>
         <PackageTags>css tailwindcss</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <ImplicitUsings>enable</ImplicitUsings>
