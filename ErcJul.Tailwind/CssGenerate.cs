@@ -9,8 +9,7 @@ public class CssGenerate : ToolTask
 {
     [Required]
     public required string ConfigCss { get; set; }
-    [Required]
-    public required string OutputPath { get; set; }
+    public string OutputPath { get; set; } = string.Empty;
 
     [Output]
     public ITaskItem[] OutPutItems { get; set; } = [];
@@ -20,8 +19,13 @@ public class CssGenerate : ToolTask
 
     protected override string GenerateCommandLineCommands()
     {
-        OutPutItems = [new TaskItem(OutputPath)];
+        var outputPath = OutputPath;
+        if (string.IsNullOrEmpty(outputPath))
+        {
+            outputPath = Path.Combine("wwwroot", ConfigCss);
+        }
+        OutPutItems = [new TaskItem(outputPath)];
         return $"--input {ConfigCss} " +
-               $"--output {OutputPath} ";
+               $"--output {outputPath} ";
     }
 }

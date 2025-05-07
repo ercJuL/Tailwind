@@ -6,7 +6,6 @@
         <Version>1.0.0</Version>
         <DevelopmentDependency>true</DevelopmentDependency>
         <NoPackageAnalysis>true</NoPackageAnalysis>
-        <IsTool>true</IsTool>
         <Authors>ercjul</Authors>
         <Copyright>Copyright 2025 The ErcJul.Tailwind Authors</Copyright>
         <Description>tailwindcss generate tool</Description>

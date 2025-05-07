@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
-        <TailwindCli_MsBuildAssembly Condition=" $(IsDebugMode) == 'false' ">lib/net9.0/ErcJul.TailWind.dll)</TailwindCli_MsBuildAssembly>
-        <TailwindCli_MsBuildAssembly Condition=" $(IsDebugMode) == 'true' ">$( [System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)../bin/Debug/net9.0/ErcJul.Tailwind.dll) )</TailwindCli_MsBuildAssembly>
+        <TailwindCli_MsBuildAssembly Condition=" $(IsDebugMode) != 'true' ">$(MSBuildThisFileDirectory)../lib/net9.0/ErcJul.Tailwind.dll</TailwindCli_MsBuildAssembly>
+        <TailwindCli_MsBuildAssembly Condition=" $(IsDebugMode) == 'true' ">$(MSBuildThisFileDirectory)../bin/Debug/net9.0/ErcJul.Tailwind.dll</TailwindCli_MsBuildAssembly>
     </PropertyGroup>
     
     <UsingTask AssemblyFile="$(TailwindCli_MsBuildAssembly)" TaskName="ErcJul.Tailwind.ToolsPlatform"/>
@@ -18,7 +18,7 @@
 
     <ItemDefinitionGroup>
         <TailWindCss>
-            <OutputPath Condition=" '%(TailWindCss.OutputPath)' == '' ">$(TailWindCss_OutputPath)wwwroot/%(TailWindCss.Filename)%(TailWindCss.Extension)</OutputPath>
+            <OutputPath Condition=" '%(TailWindCss.OutputPath)' == '' "></OutputPath>
         </TailWindCss>
     </ItemDefinitionGroup>
 
@@ -37,12 +37,9 @@
             <!-- Next try OS and CPU resolved by ToolsPlatform. -->
             <TailwindCli_ToolsOs Condition=" '$(TailwindCli_ToolsOs)' == '' ">$(_TailwindCli_ToolsOs)</TailwindCli_ToolsOs>
             <TailwindCli_ToolsCpu Condition=" '$(TailwindCli_ToolsCpu)' == '' ">$(_TailwindCli_ToolsCpu)</TailwindCli_ToolsCpu>
-            <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' and '$(TailwindCli_ToolsOs)' == 'windows' "
-            >$(TailwindCli_ToolsPath)\tailwindcss_$(TailwindCli_ToolsOs)_$(TailwindCli_ToolsCpu).exe
-            </TailwindCli_FullPath>
-            <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' "
-            >$(TailwindCli_ToolsPath)/tailwindcss_$(TailwindCli_ToolsOs)_$(TailwindCli_ToolsCpu)
-            </TailwindCli_FullPath>
+            <TailwindCli_ToolsPath Condition=" $(TailwindCli_ToolsPath) == '' ">$( [System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)../tools) )</TailwindCli_ToolsPath>
+            <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' and '$(TailwindCli_ToolsOs)' == 'windows' ">$(TailwindCli_ToolsPath)\tailwindcss-$(TailwindCli_ToolsOs)-$(TailwindCli_ToolsCpu).exe</TailwindCli_FullPath>
+            <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' and '$(TailwindCli_ToolsOs)' != 'windows' ">$(TailwindCli_ToolsPath)/tailwindcss-$(TailwindCli_ToolsOs)-$(TailwindCli_ToolsCpu)</TailwindCli_FullPath>
         </PropertyGroup>
 
         <Error Condition="'$(TailwindCli_FullPath)' == '' and ( '$(TailwindCli_ToolsOs)' == '' or '$(TailwindCli_ToolsCpu)' == '' ) "
