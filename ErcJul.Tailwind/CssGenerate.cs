@@ -8,12 +8,12 @@ using Microsoft.Build.Utilities;
 public class CssGenerate : ToolTask
 {
     [Required]
-    public string ConfigCss { get; set; }
+    public required string ConfigCss { get; set; }
     [Required]
-    public string OutputPath { get; set; }
-    
+    public required string OutputPath { get; set; }
+
     [Output]
-    public ITaskItem[] OutPutItems { get; set; }
+    public ITaskItem[] OutPutItems { get; set; } = [];
     protected override string ToolName => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "tailwindcss.exe" : "tailwindcss";
 
     protected override string GenerateFullPathToTool() => ToolExe;

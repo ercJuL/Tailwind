@@ -6,7 +6,6 @@
         <Version>1.0.0</Version>
         <DevelopmentDependency>true</DevelopmentDependency>
         <NoPackageAnalysis>true</NoPackageAnalysis>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsTool>true</IsTool>
         <Authors>ercjul</Authors>
         <Copyright>Copyright 2025 The ErcJul.Tailwind Authors</Copyright>
@@ -32,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\README.md">
+      <Content Include="..\README.md" Pack="true" PackagePath="\">
         <Link>README.md</Link>
       </Content>
     </ItemGroup>
