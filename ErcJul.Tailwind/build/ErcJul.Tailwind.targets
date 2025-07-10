@@ -7,18 +7,15 @@
     <UsingTask AssemblyFile="$(TailwindCli_MsBuildAssembly)" TaskName="ErcJul.Tailwind.ToolsPlatform"/>
     <UsingTask AssemblyFile="$(TailwindCli_MsBuildAssembly)" TaskName="ErcJul.Tailwind.CssGenerate"/>
 
-    <Target Name="DefineOutPutPath">
-        <PropertyGroup Condition=" '$(IntermediateOutputPath)' != '' ">
-            <TailWindCss_IntermediatePath Condition=" '$(TailWindCss_IntermediatePath)' == '' ">$(IntermediateOutputPath)</TailWindCss_IntermediatePath>
-<!--            <TailWindCss_OutputPath Condition=" '$(TailWindCss_OutputPath)' == '' ">$(TailWindCss_IntermediatePath)</TailWindCss_OutputPath>-->
-            <TailWindCss_OutputPath Condition=" '$(TailWindCss_OutputPath)' == '' ">./</TailWindCss_OutputPath>
-        </PropertyGroup>
-    </Target>
+    <PropertyGroup Condition=" '$(IntermediateOutputPath)' != '' ">
+        <TailWindCss_IntermediatePath Condition=" '$(TailWindCss_IntermediatePath)' == '' ">$(IntermediateOutputPath)</TailWindCss_IntermediatePath>
+        <TailWindCss_OutputPath Condition=" '$(TailWindCss_OutputPath)' == '' ">$(TailWindCss_IntermediatePath)</TailWindCss_OutputPath>
+    </PropertyGroup>
 
 
     <ItemDefinitionGroup>
         <TailWindCss>
-            <OutputPath Condition=" '%(TailWindCss.OutputPath)' == '' "></OutputPath>
+            <OutputPath Condition=" '%(TailWindCss.OutputPath)' == '' ">$(IntermediateOutputPath)</OutputPath>
         </TailWindCss>
     </ItemDefinitionGroup>
 
@@ -29,14 +26,8 @@
         </ToolsPlatform>
 
         <PropertyGroup>
-            <!-- First try environment variable. -->
-            <TailwindCli_ToolsOs Condition=" '$(TailwindCli_ToolsOs)' == '' ">$(TailwindCli_TOOLS_OS)</TailwindCli_ToolsOs>
-            <TailwindCli_ToolsCpu Condition=" '$(TailwindCli_ToolsCpu)' == '' ">$(TailwindCli_TOOLS_CPU)</TailwindCli_ToolsCpu>
-            <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' ">$(TailwindCli_)</TailwindCli_FullPath>
-
-            <!-- Next try OS and CPU resolved by ToolsPlatform. -->
-            <TailwindCli_ToolsOs Condition=" '$(TailwindCli_ToolsOs)' == '' ">$(_TailwindCli_ToolsOs)</TailwindCli_ToolsOs>
-            <TailwindCli_ToolsCpu Condition=" '$(TailwindCli_ToolsCpu)' == '' ">$(_TailwindCli_ToolsCpu)</TailwindCli_ToolsCpu>
+            <TailwindCli_ToolsOs Condition=" '$(TailwindCli_ToolsOs)' == '' ">$(TailwindCli_ToolsOs)</TailwindCli_ToolsOs>
+            <TailwindCli_ToolsCpu Condition=" '$(TailwindCli_ToolsCpu)' == '' ">$(TailwindCli_ToolsCpu)</TailwindCli_ToolsCpu>
             <TailwindCli_ToolsPath Condition=" $(TailwindCli_ToolsPath) == '' ">$( [System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)../tools) )</TailwindCli_ToolsPath>
             <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' and '$(TailwindCli_ToolsOs)' == 'windows' ">$(TailwindCli_ToolsPath)\tailwindcss-$(TailwindCli_ToolsOs)-$(TailwindCli_ToolsCpu).exe</TailwindCli_FullPath>
             <TailwindCli_FullPath Condition=" '$(TailwindCli_FullPath)' == '' and '$(TailwindCli_ToolsOs)' != 'windows' ">$(TailwindCli_ToolsPath)/tailwindcss-$(TailwindCli_ToolsOs)-$(TailwindCli_ToolsCpu)</TailwindCli_FullPath>
@@ -46,9 +37,9 @@
                Text="ErcJul.Tailwind cannot determine host OS and CPU.&#10;Use environment variables TailwindCli_TOOLS_OS={linux|macosx|windows} and TailwindCli_TOOLS_CPU={x86|x64|arm64} to try the closest match to your system.&#10;You may also set TailwindCli to specify full path to the host-provided compiler."/>
     </Target>
 
-    <Target Name="TailWindCssGenerate" BeforeTargets="ResolveProjectStaticWebAssets" DependsOnTargets="TailwindCli_ResolvePlatform">
-        <CssGenerate ToolExe="$(TailwindCli_FullPath)" ConfigCss="@(TailWindCss)" OutputPath="%(TailWindCss.OutputPath)">
-            <Output TaskParameter="OutPutItems" PropertyName="_TailWindCss_GenerateFiles"/>
+    <Target Condition="'@(TailWindCss)' != ''" Name="TailWindCssGenerate" BeforeTargets="ResolveProjectStaticWebAssets" DependsOnTargets="TailwindCli_ResolvePlatform">
+        <CssGenerate ToolExe="$(TailwindCli_FullPath)" ConfigCss="@(TailWindCss)" OutputPath="%(TailWindCss.OutputPath)" Minify="%(TailWindCss.Minify)" >
+            <Output TaskParameter="OutPutItems" ItemName="_TailWindCss_GenerateFiles"/>
         </CssGenerate>
     </Target>
 
