@@ -24,7 +24,7 @@ jobs:
           dotnet restore ErcJul.Tailwind.csproj
       
       - name: Get TailwindCli
-        run: ./script/get_tailwind_cli.sh v4.1.5
+        run: ./script/get_tailwind_cli.sh v4.1.11
       
       - name: Pack NuGet package
         run: |
