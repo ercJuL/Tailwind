@@ -1,0 +1,8 @@
+﻿<Solution>
+  <Folder Name="/SolutionFolder/">
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="ErcJul.Tailwind\ErcJul.Tailwind.csproj" Type="Classic C#" />
+  <Project Path="examples\ErcJul.Tailwind.Ssr\ErcJul.Tailwind.Ssr.csproj" Type="Classic C#" />
+</Solution>
